@@ -4,6 +4,7 @@ This shell script for Domain lookup via Korea LDNS and other public DNS of Big p
 
 # Usage
 A second filed numeric values are TTL, a sixth filed numeric values are Query times.
+
     ~$ kdig.sh foo.com
     01) foo.com. 600   A 23.23.86.44	[KT:168.126.63.1]	231	qr-rd-ra
     02) foo.com. 600   A 23.23.86.44	[KT_LDNS:168.126.63.2]	220	qr-rd-ra
