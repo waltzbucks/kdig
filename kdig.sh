@@ -97,7 +97,7 @@ for dnslist in  168.126.63.1:KT 168.126.63.2:KT_LDNS \
         #R3=`echo $Result|awk -F" " '{print $3}'`
         #R4=`echo $Result|awk -F" " '{print $4}'`
         
-	Result=(`dig $HOST @$dns +time=1 +tries=3 | awk -v host="$HOST" -v dns="$dns" '{
+	Result=(`dig $HOST @$dns +time=1 +tries=3 +noauthority | awk -v host="$HOST" -v dns="$dns" '{
 			if($0~"flags: ") {
 				split($0,flags,";");
 				split(flags[3],flag,": ");
@@ -139,9 +139,9 @@ for dnslist in  168.126.63.1:KT 168.126.63.2:KT_LDNS \
                         echo -e "$R4 $R3\t[$ISP:$dns]\t$R5\t$FLAG${CEND}"
                 fi
         else
-                echo -en "${CRED}$CNT2) $R1${CEND} ${CDRED}FAILED"
+                echo -en "${CRED}$CNT2) $R1${CEND} ${CDRED}FAIL"
                 $MOVE_TO_COL
-                echo -e "N/A N/A\t[$ISP:$dns]\t$R5\t$FLAG${CEND}"
+                echo -e "- N/A\t\t[$ISP:$dns]\t$R5\t$FLAG${CEND}"
         fi
         if [ "$CNT" == "22" ]; then
                 echo -e "  * NortonSecA is Security (malware, phishing sites and scam sites)\n  * NortonSecB is Security + Pornography\n  * NortonSecC is Security + Pornography + Non-Family Friendly"
